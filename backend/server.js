@@ -1,17 +1,13 @@
 import express from 'express'
 import mongoose from 'mongoose';
-
+import 'dotenv/config'
 import cors from 'cors'
 import userRoutes from './routes/user.route.js'
 import messageRoutes from './routes/message.route.js'
 import http from "http"
 import {Server} from "socket.io";
 import connectCloudinary from './utils/cloudinary.js';
-
-import dotenv from 'dotenv';
-
-dotenv.config(); 
-
+import path from 'path'
 const app = express()
 app.use(express.json())
 app.use(cors())
@@ -36,6 +32,9 @@ mongoose.connect(
 })
 
 connectCloudinary()
+
+
+const __dirname = path.resolve()
 app.use('/api/user', userRoutes);
 app.use('/api/message', messageRoutes);
 
@@ -54,6 +53,12 @@ io.on("connection", (socket) => {
 
 } )
 
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'))
+})
+
 server.listen(4000, () => {
     console.log('Server running on port 4000!');
 });
@@ -61,3 +66,4 @@ server.listen(4000, () => {
 app.get('/', (req,res) => {
     res.send("API working")
 })
+
