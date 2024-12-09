@@ -2,7 +2,6 @@
   "name": "chat-app",
   "version": "1.0.0",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js",
