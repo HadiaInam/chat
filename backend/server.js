@@ -1,6 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose';
-import 'dotenv/config'
+
 import cors from 'cors'
 import userRoutes from './routes/user.route.js'
 import messageRoutes from './routes/message.route.js'
@@ -8,6 +8,9 @@ import http from "http"
 import {Server} from "socket.io";
 import connectCloudinary from './utils/cloudinary.js';
 
+import dotenv from 'dotenv';
+
+dotenv.config(); 
 
 const app = express()
 app.use(express.json())

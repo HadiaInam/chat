@@ -1,8 +1,6 @@
 import Message from "../models/message.model.js";
 import { io } from "../server.js";
 import {v2 as cloudinary} from  'cloudinary'
-import http from "http"
-import {Server} from "socket.io";
 
 export const getMessages = async(req,res)=>{
     const {senderId, recieverId} = req.body;
