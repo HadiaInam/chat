@@ -15,7 +15,7 @@ app.use(cors())
  
 const server = http.createServer(app)
 
-export const io = new Server(server, {
+const io = new Server(server, {
     cors: {
         origin: process.env.ORIGIN,
         methods: ["GET", "POST"],
