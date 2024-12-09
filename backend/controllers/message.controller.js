@@ -4,15 +4,6 @@ import {v2 as cloudinary} from  'cloudinary'
 import http from "http"
 import {Server} from "socket.io";
 
-const server = http.createServer(app)
-
-const io = new Server(server, {
-    cors: {
-        origin: process.env.ORIGIN,
-        methods: ["GET", "POST"],
-    }
-});
-
 export const getMessages = async(req,res)=>{
     const {senderId, recieverId} = req.body;
      try {
