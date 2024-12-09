@@ -7,7 +7,7 @@ import messageRoutes from './routes/message.route.js'
 import http from "http"
 import {Server} from "socket.io";
 import connectCloudinary from './utils/cloudinary.js';
-import path from 'path'
+
 const app = express()
 app.use(express.json())
 app.use(cors())
@@ -34,7 +34,7 @@ mongoose.connect(
 connectCloudinary()
 
 
-const __dirname = path.resolve()
+
 app.use('/api/user', userRoutes);
 app.use('/api/message', messageRoutes);
 
@@ -53,11 +53,6 @@ io.on("connection", (socket) => {
 
 } )
 
-app.use(express.static(path.join(__dirname, '/frontend/dist')));
-
-app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'))
-})
 
 server.listen(4000, () => {
     console.log('Server running on port 4000!');
